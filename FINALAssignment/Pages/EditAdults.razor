@@ -1,0 +1,87 @@
+@page "/EditAdults/{adultToEdit}"
+@using FINALAssignment.Data.AddAdultsService
+@using global::Models
+@using FileData
+@inject IAddAdultsService AddAdultsService
+@inject NavigationManager NavigationManager
+
+<div class="form-group">
+                    <label>Job Title</label>
+                    <input type="text" placeholder="Job Title" @bind-value="JobTitle"/>
+                </div>
+    <div class="form-group">
+        <label>Sex</label>
+        <input type="text" placeholder="Sex" @bind-value="Sex"/>
+    </div>
+<div class="form-group">
+    <label>Hair Color</label>
+    <input type="text" placeholder="Hair Color" @bind-value="HairColor"/>
+</div>
+<div class="form-group">
+    <label>Eye Color</label>
+    <input type="text" placeholder="Eye color" @bind-value="EyeColor"/>
+</div>
+<div class="form-group">
+    <label>Age</label>
+    <input type="text" placeholder="Age" @bind-value="Age"/>
+</div>
+<div class="form-group">
+    <label>Weight</label>
+    <input type="text" placeholder="Weight" @bind-value="Weight"/>
+</div>
+<div class="form-group">
+    <label>Height</label>
+    <input type="text" placeholder="Height" @bind-value="Height"/>
+</div>
+<a href="" @onclick="EditAdult">
+                Edit Adult
+            </a>
+
+@code {
+    private string HairColor;
+    private string EyeColor;
+    private int Age;
+    private float Weight;
+    private int Height;
+    private string Sex;
+    private string JobTitle;
+    private Adult adult;
+    private Adult anotherAdult;
+    private IList<Adult> adults;
+    private int index;
+    [Parameter]
+    public String adultToEdit { get; set; }
+
+    private FileContext _fileContext = new FileContext();
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine(adultToEdit);
+        adult = AddAdultsService.GetAdults().FirstOrDefault(a => String.Join("", a.Id).Equals(adultToEdit));
+        Console.WriteLine(adult);
+        JobTitle = adult.JobTitle;
+        Sex = adult.Sex;
+        HairColor = adult.HairColor;
+        EyeColor = adult.EyeColor;
+        Age = adult.Age;
+        Weight = adult.Age;
+        Height = adult.Height;
+        adults = _fileContext.Adults;
+    }
+
+    public void EditAdult()
+    {
+        anotherAdult = adults.First(a => a.Id == adult.Id);
+        anotherAdult.JobTitle = JobTitle;
+        anotherAdult.Sex = Sex;
+        anotherAdult.HairColor = HairColor;
+        anotherAdult.EyeColor = EyeColor;
+        anotherAdult.Age = Age;
+        anotherAdult.Weight = Weight;
+        anotherAdult.Height = Height;
+        adults.First(a => a.Id == adult.Id).Update(anotherAdult);
+        _fileContext.SaveChanges();
+        NavigationManager.NavigateTo("/AddAdults", true);
+    }
+
+}

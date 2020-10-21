@@ -1,0 +1,46 @@
+[
+  {
+    "JobTitle": "Psychologist",
+    "Id": 9876,
+    "Name": "Jordan Peterson",
+    "HairColor": "Hazel",
+    "EyeColor": "Black",
+    "Age": 52,
+    "Weight": 70,
+    "Height": 180,
+    "Sex": "M"
+  },
+  {
+    "JobTitle": "",
+    "Id": 5423,
+    "Name": "Michael Jordan",
+    "HairColor": "",
+    "EyeColor": "",
+    "Age": 0,
+    "Weight": 0,
+    "Height": 0,
+    "Sex": ""
+  },
+  {
+    "JobTitle": "",
+    "Id": 1243,
+    "Name": "Selena Gomez",
+    "HairColor": "",
+    "EyeColor": "",
+    "Age": 0,
+    "Weight": 0,
+    "Height": 0,
+    "Sex": ""
+  },
+  {
+    "JobTitle": "Boss",
+    "Id": 2587,
+    "Name": "Elon Musk",
+    "HairColor": "Black",
+    "EyeColor": "Hazel",
+    "Age": 35,
+    "Weight": 85,
+    "Height": 190,
+    "Sex": "M"
+  }
+]
